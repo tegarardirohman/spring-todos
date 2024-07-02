@@ -13,7 +13,7 @@ public class DBConfig {
     public static EntityManager em() {
         if (transaction == null) {
             try {
-                emf = Persistence.createEntityManagerFactory("persistence.xml");
+                emf = Persistence.createEntityManagerFactory("enigma-persistence");
                 em = emf.createEntityManager();
 
             } catch (Exception e) {

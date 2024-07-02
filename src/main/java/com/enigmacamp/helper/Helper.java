@@ -7,22 +7,35 @@ import com.enigmacamp.beans.controllers.TodoController;
 import com.enigmacamp.beans.controllers.UserController;
 import com.enigmacamp.entity.Todo;
 import com.enigmacamp.entity.User;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.w3c.dom.ls.LSOutput;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Helper {
     static Scanner scanner = new Scanner(System.in);
     static User user;
+    AnnotationConfigApplicationContext applicationContext;
+    TodoController todosService;
+    UserController userService;
 
 
-    static UserService userService = new UserController();
-    static TodoService todosService = new TodoController();
+    public Helper(AnnotationConfigApplicationContext applicationContext, TodoController todosService, UserController userService) {
+        this.applicationContext = applicationContext;
+        this.todosService = todosService;
+        this.userService = userService;
+    }
+
+//
+//    static UserService userService = new UserController();
+//    static TodoService todosService = new TodoController();
 
     static List<Todo> todos = new ArrayList<>();
 
@@ -41,7 +54,7 @@ public class Helper {
         Helper.user = user;
     }
 
-    public static void login() {
+    public void login() {
         String username;
         String password;
 
@@ -71,7 +84,7 @@ public class Helper {
 
     }
 
-    public static void signUp() {
+    public void signUp() {
         String username;
         String password;
         String firstName;
@@ -110,7 +123,7 @@ public class Helper {
         }
     }
 
-    static void getTodo(boolean status) {
+    void getTodo(boolean status) {
 
         try {
             todos = todosService.findAll(user.getId(), status);
@@ -122,12 +135,12 @@ public class Helper {
 
     }
 
-    public static void menu() {
+    public void menu() {
         String option;
 
         do {
             header(user.getFirstName().toUpperCase() + " " + user.getLastName().toUpperCase() +"'s TODOS");
-            getTodo(false);
+            this.getTodo(false);
 
             System.out.println("_______________");
             System.out.println("MENU");
@@ -141,19 +154,19 @@ public class Helper {
             option = inputText("Choose an option: ");
             switch (option) {
                 case "1":
-                    addTodo();
+                    this.addTodo();
                     break;
                 case "2":
-                    toCompleted(getIdTodo());
+                    this.toCompleted(getIdTodo());
                     break;
                 case "3":
-                    getTodo(true);
+                    this.getTodo(true);
                     break;
                 case "4":
-                    updateTodo(getIdTodo());
+                    this.updateTodo(getIdTodo());
                     break;
                 case "5":
-                    deleteTodo(getIdTodo());
+                    this.deleteTodo(getIdTodo());
                     break;
                 case "0":
                     return;
@@ -164,8 +177,11 @@ public class Helper {
 
     }
 
-    public static void start() {
+    public void start() {
         String choice;
+
+        // start
+
 
         do {
             header("Login or Sign Up");
@@ -177,7 +193,7 @@ public class Helper {
 
             switch (choice) {
                 case "1":
-                    login();
+                    this.login();
                     break;
                 case "2":
                     signUp();
@@ -193,7 +209,7 @@ public class Helper {
 
     }
 
-    public static void addTodo() {
+    public void addTodo() {
         header("Add Todo");
 
         String title, deadline, priority;
@@ -236,7 +252,7 @@ public class Helper {
         todosService.addTodo(new Todo(title, priority, deadLine, user_id, false));
     }
 
-    static void toCompleted(int todoId) {
+    void toCompleted(int todoId) {
         todosService.toCompleted(todoId);
     }
 
@@ -250,7 +266,7 @@ public class Helper {
         return Integer.parseInt(id);
     }
 
-    static void updateTodo(int todoId) {
+    void updateTodo(int todoId) {
         header("Update TODO");
 
         String title, deadline, priority, completed;
@@ -301,7 +317,7 @@ public class Helper {
         todosService.updateTodo(new Todo(todoId, title, priority, deadLine, user_id, completedBool));
     }
 
-    static void deleteTodo(int todoId) {
+    void deleteTodo(int todoId) {
         header("Delete TODO");
 
         todosService.deleteTodo(todoId);

@@ -11,7 +11,7 @@ public class DBConfig {
     private static EntityTransaction transaction;
 
     public static EntityManager em() {
-        if (transaction == null) {
+        if (em == null) {
             try {
                 emf = Persistence.createEntityManagerFactory("enigma-persistence");
                 em = emf.createEntityManager();

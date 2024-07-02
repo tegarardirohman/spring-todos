@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- Disable Hibernate SQL logging -->
+    <logger name="org.hibernate.SQL" level="OFF" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="OFF" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="OFF" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractorImpl" level="OFF" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractorImpl$ResultSetAccessImpl" level="OFF" />
+    <logger name="org.hibernate.internal.util.EntityPrinter" level="OFF" />
+
+
+</configuration>

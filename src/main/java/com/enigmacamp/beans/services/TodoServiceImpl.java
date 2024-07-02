@@ -1,4 +1,4 @@
-package com.enigmacamp.beans.controllers;
+package com.enigmacamp.beans.services;
 
 import com.enigmacamp.config.DBConfig;
 import com.enigmacamp.entity.Todo;
@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Component
-public class TodoController implements TodoService {
+public class TodoServiceImpl implements TodoService {
 
     public List<Todo> findAll(int id, boolean status) {
         TypedQuery<Todo> users = DBConfig.em().createQuery("SELECT t from Todo t WHERE t.user_id = :user_id ORDER BY t.id", Todo.class);

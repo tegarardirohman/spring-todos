@@ -1,21 +1,17 @@
 package com.enigmacamp.helper;
 
 
-import com.enigmacamp.beans.UserService;
-import com.enigmacamp.beans.TodoService;
-import com.enigmacamp.beans.controllers.TodoController;
-import com.enigmacamp.beans.controllers.UserController;
+import com.enigmacamp.beans.services.TodoServiceImpl;
+import com.enigmacamp.beans.services.UserServiceImpl;
 import com.enigmacamp.entity.Todo;
 import com.enigmacamp.entity.User;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.w3c.dom.ls.LSOutput;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,19 +19,16 @@ public class Helper {
     static Scanner scanner = new Scanner(System.in);
     static User user;
     AnnotationConfigApplicationContext applicationContext;
-    TodoController todosService;
-    UserController userService;
+    TodoServiceImpl todosService;
+    UserServiceImpl userService;
 
 
-    public Helper(AnnotationConfigApplicationContext applicationContext, TodoController todosService, UserController userService) {
+    public Helper(AnnotationConfigApplicationContext applicationContext, TodoServiceImpl todosService, UserServiceImpl userService) {
         this.applicationContext = applicationContext;
         this.todosService = todosService;
         this.userService = userService;
     }
 
-//
-//    static UserService userService = new UserController();
-//    static TodoService todosService = new TodoController();
 
     static List<Todo> todos = new ArrayList<>();
 
@@ -179,9 +172,6 @@ public class Helper {
 
     public void start() {
         String choice;
-
-        // start
-
 
         do {
             header("Login or Sign Up");

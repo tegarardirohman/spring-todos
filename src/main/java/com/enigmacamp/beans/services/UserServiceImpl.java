@@ -1,4 +1,4 @@
-package com.enigmacamp.beans.controllers;
+package com.enigmacamp.beans.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.enigmacamp.beans.UserService;
@@ -8,7 +8,7 @@ import com.enigmacamp.helper.Helper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserController implements UserService {
+public class UserServiceImpl implements UserService {
 
     private void setUser(User user) {
         Helper.setUser(user);

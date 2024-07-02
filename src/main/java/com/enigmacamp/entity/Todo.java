@@ -1,7 +1,6 @@
 package com.enigmacamp.entity;
 
 import com.enigmacamp.beans.TodoService;
-import com.enigmacamp.beans.controllers.TodoController;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

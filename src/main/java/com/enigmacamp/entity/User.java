@@ -3,6 +3,8 @@ package com.enigmacamp.entity;
 import com.enigmacamp.beans.UserService;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -14,6 +16,7 @@ public class User {
     @Column(unique = true)
     private String username;
     private String password;
+
 
     @Transient
     private UserService userService;
